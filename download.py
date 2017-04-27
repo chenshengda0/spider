@@ -17,6 +17,11 @@ def download(url,user_agent="wswp",num_retries=2):
 			return None
 	return html
 	
+def get_links(html):
+	webpage_regex=re.compile('<a[^>]+href=["\'](.*?)["\']',re.IGNORECASE)
+	return webpage_regex.findall(html)
+	
+	
 def link_crawl(seed_url,link_regex):
 	crawl_queue = [seed_url]
 	seen = set(crawl_queue)
